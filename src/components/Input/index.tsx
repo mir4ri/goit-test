@@ -5,14 +5,14 @@ import {
 	fetchGithubRepositories,
 	updateInput,
 } from "../../features/inputSlice";
-import { RootState } from "../../store";
+import { AppDispatch, RootState } from "../../store";
 
 export const Input: FC = () => {
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const { inputValue, page } = useSelector((state: RootState) => state.repos);
 
 	useEffect(() => {
-		dispatch(fetchGithubRepositories({query: inputValue, since: page}));
+		dispatch(fetchGithubRepositories({ query: inputValue, page: page }));
 	}, [dispatch, inputValue, page]);
 
 	return (

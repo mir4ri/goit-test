@@ -3,10 +3,11 @@ import { Input } from "./components/Input";
 import { Card } from "./components/Card";
 import { useSelector } from "react-redux";
 import { Pagination } from "./components/Pagination";
+import { RootState } from "./store";
 
 const App: FC = () => {
 	const { repositories, isLoading, isErrored, errorMessage } = useSelector(
-		(state) => state.repos
+		(state: RootState) => state.repos
 	);
 
 	return (

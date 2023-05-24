@@ -8,7 +8,7 @@ const apiUrl = "https://api.github.com";
 
 export const fetchGithubRepositories = createAsyncThunk(
 	"repo/fetchGithubRepositories",
-	async (query, { rejectWithValue }) => {
+	async (query: { query: string; page: number }, { rejectWithValue }) => {
 		try {
 			const response = await axios.get(`${apiUrl}/search/repositories`, {
 				headers: {
@@ -17,12 +17,12 @@ export const fetchGithubRepositories = createAsyncThunk(
 				params: {
 					q: query.query,
 					per_page: 3,
-					page: query.since,
+					page: query.page,
 				},
 			});
 
 			return response.data?.items || [];
-		} catch (error) {
+		} catch (error: any) {
 			return rejectWithValue(error.response.data.message);
 		}
 	}
@@ -35,13 +35,13 @@ export const inputSlice = createSlice({
 		isLoading: false,
 		isErrored: false,
 		errorMessage: "",
-		repositories: [],
+		repositories: [] as any[],
 		page: 1,
 	},
 	reducers: {
 		updateInput: (state, action) => {
 			state.inputValue = action.payload;
-      state.page = 1;
+			state.page = 1;
 		},
 		incrementPage: (state) => {
 			state.page += 1;
@@ -63,7 +63,7 @@ export const inputSlice = createSlice({
 				state.isLoading = false;
 				state.repositories = [];
 				state.isErrored = true;
-				state.errorMessage = action.payload;
+				state.errorMessage = action.payload as string;
 			});
 	},
 });

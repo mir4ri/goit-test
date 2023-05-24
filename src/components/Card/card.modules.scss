@@ -1,0 +1,56 @@
+.card {
+	display: flex;
+	justify-content: space-between;
+	filter: drop-shadow(0px 24px 64px rgba(0, 0, 0, 0.04));
+	border-radius: 1rem;
+	background: #fff;
+	margin-bottom: 2.25rem;
+	padding: 2.5rem;
+
+	.light-text {
+		font-weight: 300;
+		color: #6e798c;
+    display: inline-block;
+	}
+
+	.left-side {
+		display: flex;
+		.react-img {
+      display: block;
+			background: linear-gradient(321.69deg, #4481eb 0%, #04befe 100%);
+			border-radius: 0.25rem;
+			padding: 2rem 1.5rem;
+			margin-right: 1.5rem;
+		}
+
+		.title {
+			font-size: 1.375em;
+			font-weight: 400;
+			font-family: "DM Serif Display";
+			margin: 0;
+			margin-bottom: 8px;
+		}
+
+		.text {
+			margin-top: 0;
+			margin-bottom: 6px;
+		}
+
+		.description {
+			color: #6e798c;
+		}
+	}
+	.right-side {
+		margin-top: auto;
+		color: #081f32;
+		.statistic {
+      display: flex;
+      align-items: center;
+			margin-bottom: 1.2rem;
+      img {
+        display: block;
+        margin-right: 0.9rem;
+      }
+		}
+	}
+}

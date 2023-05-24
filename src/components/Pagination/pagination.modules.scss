@@ -1,0 +1,20 @@
+.pagination-container {
+	display: flex;
+	justify-content: center;
+	.button {
+		border: none;
+		border-bottom: 3px solid transparent;
+		background: none;
+		margin: 0 1.25rem;
+		font-weight: 600;
+		font-size: 1.125em;
+		&:last-child,
+		&:first-child {
+			margin: 0;
+			cursor: pointer;
+		}
+	}
+	.is-active {
+		border-bottom: 3px solid #65b79a;
+	}
+}

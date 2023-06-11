@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getGithubRepositories } from "../services/api";
-import { store } from "../store";
 
 export const fetchGithubRepositories = createAsyncThunk(
 	"repo/fetchGithubRepositories",

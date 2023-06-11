@@ -1,27 +1,14 @@
-import {
-	createAsyncThunk,
-	createSlice,
-} from "@reduxjs/toolkit";
-import axios from "axios";
-
-const apiUrl = "https://api.github.com";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { getGithubRepositories } from "../services/api";
+import { store } from "../store";
 
 export const fetchGithubRepositories = createAsyncThunk(
 	"repo/fetchGithubRepositories",
 	async (query: { query: string; page: number }, { rejectWithValue }) => {
 		try {
-			const response = await axios.get(`${apiUrl}/search/repositories`, {
-				headers: {
-					Authorization: `${import.meta.env.GITHUB_TOKEN}`,
-				},
-				params: {
-					q: query.query,
-					per_page: 3,
-					page: query.page,
-				},
-			});
+			const response = getGithubRepositories(query.query, query.page);
 
-			return response.data?.items || [];
+			return (await response).data?.items || [];
 		} catch (error: any) {
 			return rejectWithValue(error.response.data.message);
 		}
@@ -36,18 +23,10 @@ export const inputSlice = createSlice({
 		isErrored: false,
 		errorMessage: "",
 		repositories: [] as any[],
-		page: 1,
 	},
 	reducers: {
 		updateInput: (state, action) => {
 			state.inputValue = action.payload;
-			state.page = 1;
-		},
-		incrementPage: (state) => {
-			state.page += 1;
-		},
-		decrementPage: (state) => {
-			state.page -= 1;
 		},
 	},
 	extraReducers: (builder) => {
@@ -68,6 +47,6 @@ export const inputSlice = createSlice({
 	},
 });
 
-export const { updateInput, incrementPage, decrementPage } = inputSlice.actions;
+export const { updateInput } = inputSlice.actions;
 
 export default inputSlice.reducer;

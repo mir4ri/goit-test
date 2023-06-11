@@ -9,7 +9,8 @@ import { AppDispatch, RootState } from "../../store";
 
 export const Input: FC = () => {
 	const dispatch = useDispatch<AppDispatch>();
-	const { inputValue, page } = useSelector((state: RootState) => state.repos);
+	const { inputValue } = useSelector((state: RootState) => state.repos);
+	const { page } = useSelector((state: RootState) => state.pagination);
 
 	useEffect(() => {
 		dispatch(fetchGithubRepositories({ query: inputValue, page: page }));

@@ -8,10 +8,10 @@
 		margin: 0 1.25rem;
 		font-weight: 600;
 		font-size: 1.125em;
+		cursor: pointer;
 		&:last-child,
 		&:first-child {
 			margin: 0;
-			cursor: pointer;
 		}
 	}
 	.is-active {
